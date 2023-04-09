@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -31,45 +29,43 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity tb_AND_gate is
---  Port ( );
-end tb_AND_gate;
+ENTITY tb_AND_gate IS
+  --  Port ( );
+END tb_AND_gate;
 
-architecture Behavioral of tb_AND_gate is
-signal a : std_logic := '0';
-signal b : std_logic := '0';
-signal c : std_logic;
+ARCHITECTURE Behavioral OF tb_AND_gate IS
+  SIGNAL a : STD_LOGIC := '0';
+  SIGNAL b : STD_LOGIC := '0';
+  SIGNAL c : STD_LOGIC;
 
-component and_gate is  
- Port ( 
-  a : in std_logic; -- 0, 1, z , U, x
-  b : in std_logic;
-  c : out std_logic
-  
+  COMPONENT and_gate IS
+    PORT (
+      a : IN STD_LOGIC; -- 0, 1, z , U, x
+      b : IN STD_LOGIC;
+      c : OUT STD_LOGIC
+
+    );
+  END COMPONENT;
+
+BEGIN
+
+  PROCESS BEGIN
+    a <= '0';
+    b <= '0';
+    WAIT FOR 1 ns;
+    b <= '1';
+    WAIT FOR 1 ns;
+    a <= '1';
+    WAIT FOR 1 ns;
+    b <= '0';
+    WAIT FOR 1 ns;
+  END PROCESS;
+
+  i_and_gate : and_gate
+  PORT MAP(
+    a => a,
+    b => b,
+    c => c
+
   );
-end component;
-
-begin
-
-   process begin
-     a <= '0';
-     b <= '0';
-     wait for 1 ns;
-     b <= '1';
-     wait for 1 ns;
-     a <= '1';
-     wait for 1 ns;
-     b <= '0';
-     wait for 1 ns;
-   end process;
-   
-   i_and_gate : and_gate   
- Port map ( 
-  a => a,
-  b => b,
-  c => c
-  
-  );
-   
-
-end Behavioral;
+END Behavioral;
