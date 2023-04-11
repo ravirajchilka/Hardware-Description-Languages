@@ -44,7 +44,7 @@ architecture Behavioral of AND_gate is
 begin
  c <= a and b;
  
- c <= '1' when ((a = '1') and (b = '1')) else '0';
+ -- c <= '1' when ((a = '1') and (b = '1')) else '0';
  
 
 end Behavioral;
