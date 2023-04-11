@@ -17,8 +17,10 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -29,18 +31,20 @@ USE IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-ENTITY AND_gate IS
-  PORT (
-    a : IN STD_LOGIC; -- 0, 1, z , U, x
-    b : IN STD_LOGIC;
-    c : OUT STD_LOGIC
-
+entity AND_gate is  
+ Port ( 
+  a : in std_logic; -- 0, 1, z , U, x
+  b : in std_logic;
+  c : out std_logic
+  
   );
-END AND_gate;
+end AND_gate;
 
-ARCHITECTURE Behavioral OF AND_gate IS
-BEGIN
-  c <= a AND b;
+architecture Behavioral of AND_gate is
+begin
+ c <= a and b;
+ 
+ c <= '1' when ((a = '1') and (b = '1')) else '0';
+ 
 
-  --c <= '1' when ((a = '1') and (b = '1')) else '0';
-END Behavioral;
+end Behavioral;
