@@ -16,11 +16,11 @@ architecture Behavioral of tb_comparator is
   
 component comparator is 
     Port(
-        a :  std_logic_vector (1 downto 0);
-        b :  std_logic_vector (1 downto 0); 
-        g :  std_logic;
-        l :  std_logic;
-        e :  std_logic
+        a :  in std_logic_vector (1 downto 0);
+        b :  in std_logic_vector (1 downto 0); 
+        g :  out std_logic;
+        l :  out std_logic;
+        e :  out std_logic
      );
 end component;    
 
@@ -34,7 +34,7 @@ inst: comparator
       e => e
      );
 
-process    
+process
     begin
        -- for i in 0 to 15 loop
          --   a <= a+1;
@@ -43,8 +43,8 @@ process
          for i in 0 to 15 loop
             count <= count + 1;
             wait for 1 ns;
-         end loop;  
-
+         end loop; 
+        
 end process;
 
     a <= count(3 downto 2);
