@@ -1,4 +1,4 @@
-module mux_2_1_b(Y,I,S);
+module mux_4_1_b(Y,I,S);
 
 input [3:0]I;
 input [1:0]S;
