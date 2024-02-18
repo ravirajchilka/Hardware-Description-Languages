@@ -12,3 +12,4 @@ module top_module(
     assign out_hi = in[15:8];
     
 endmodule
+
