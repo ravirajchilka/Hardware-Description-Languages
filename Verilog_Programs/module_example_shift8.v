@@ -4,7 +4,7 @@ In addition, create a 4-to-1 multiplexer (not provided) that chooses what to out
 The module provided to you is: module my_dff8 ( input clk, input [7:0] d, output [7:0] q );
 The multiplexer is not provided.*/
 
-module top_module ( input clk, input d, output q );
+module top_module (input clk, input [7:0] d, input [1:0] sel, output [7:0] q);
 
     wire [7:0] qTOd_1;
     wire [7:0] qTOd_2;
