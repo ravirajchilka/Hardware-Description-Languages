@@ -15,7 +15,8 @@ reg [PWM_RESOLUTION-1:0] brightness = MAX_BRIGHTNESS; // Start from max brightne
 
 // Clock divider (optional, based on your clk frequency and desired PWM frequency)
 reg [15:0] clk_divider = 0;
-wire pwm_clk = clk_divider[10]; //(value for controlling brightness time, larger value means more time takes to discharge) Adjust the index based on desired PWM frequency
+wire pwm_clk = clk_divider[10]; //(value for controlling brightness time, 
+//larger value means more time takes to discharge) Adjust the index based on desired PWM frequency
 
 always @(posedge clk) begin
     clk_divider <= clk_divider + 1;
