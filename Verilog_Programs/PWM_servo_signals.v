@@ -8,20 +8,20 @@ module PWM_servo_signals(
 
 	always@(posedge clk) begin 
 		counter <= counter + 1;
-		if(counter == 7.5*one_ms) // reset counter after 7.5 ms
+		if(counter == 67.5*one_ms) // reset counter after 7.5 ms
 			counter <= 0;
 	end
 
 	always@(*) begin 
 		if(counter < one_ms)
 			opin[0] <= 1'b1; 
-		else if(counter > one_ms && counter < 2*one_ms) 
+		else if(counter > one_ms && counter < 21*one_ms) 
 			opin[0] <= 1'b0; // next 1ms low
-		else if(counter > 2*one_ms && counter < 3.5*one_ms)
+		else if(counter > 21*one_ms && counter < 22.5*one_ms)
 			opin[0] <= 1'b1; // next 1.5ms high
-		else if(counter > 3.5*one_ms && counter < 4.5*one_ms)
+		else if(counter > 22.5*one_ms && counter < 42.5*one_ms)
 			opin[0] <= 1'b0; // next 1ms low
-		else if(counter > 4.5*one_ms && counter < 6.5*one_ms)
+		else if(counter > 44.5*one_ms && counter < 46.5*one_ms)
 			opin[0] <= 1'b1; // next 2ms high 
 		else 
 			opin[0] <= 1'b0; // next 1ms low and restart the counter 
