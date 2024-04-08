@@ -30,6 +30,21 @@ module c_sharp_music_scale_note(
 		 // Always update last known state of btn1
 		 btn1_last <= btn1;
 
+		 /* more concise way of if else statements
+		 always@(posedge clk) begin
+			if (btn1 != btn1_last_state) begin
+				debounce_counter <= 0;
+			end 
+			else 
+				if (debounce_counter < TIME_DELAY) begin
+					debounce_counter <= debounce_counter + 1;
+				end 
+				else begin
+					btn1_stable_state <= btn1;
+				end
+			btn1_last_state <= btn1;
+	     end*/
+
 		 // Original logic with btn1 replaced by btn1_stable
 		 if(btn1_stable) begin    
 			 counter1 <= counter1 + 1;
