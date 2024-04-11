@@ -13,12 +13,12 @@ module metronome_8_beats_with_7seg_display(
 	
 	always@(posedge clk) begin 
 		// Generate G# beep at 4th interval // G#4: Around 415.30 Hz 
-		g_sharp_beep_time_counter <= g_sharp_beep_time_counter + 1;
+		g_sharp_beep_time_counter <= g_sharp_beep_time_counter + 1'b1;
 		if(g_sharp_beep_time_counter == (4*25'd27000000) ) 
 			g_sharp_beep_time_counter <= 1'b0;
 
 		if(g_sharp_beep_time_counter >= 3*(25'd27000000) && g_sharp_beep_time_counter < 27'd86400000) begin   // Generate 415.30 Hz frequency
-		    g_sharp_freq_counter <= g_sharp_freq_counter + 1;
+		    g_sharp_freq_counter <= g_sharp_freq_counter + 1'b1;
 		    if(g_sharp_freq_counter == 17'd65014)  
 			  	g_sharp_freq_counter <= 1'b0;
 
