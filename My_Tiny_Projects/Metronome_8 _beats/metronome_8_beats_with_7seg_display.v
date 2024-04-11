@@ -9,7 +9,7 @@ module metronome_8_beats_with_7seg_display(
 	reg [16:0] g_sharp_freq_counter;
 	reg [24:0] c_sharp_beep_time_counter;
 	reg [26:0] g_sharp_beep_time_counter;
-	reg [26:0] c_loop_counter;
+	reg [26:0] c_sharp_loop_counter;
 	
 	always@(posedge clk) begin 
 		// Generate G# beep at 4th interval // G#4: Around 415.30 Hz 
@@ -28,8 +28,8 @@ module metronome_8_beats_with_7seg_display(
 			  	speaker_out <= 0;
 		end	
 		
-		c_loop_counter <= c_loop_counter + 1;
-		if(c_loop_counter <= 3*27000000) begin
+		c_sharp_loop_counter <= c_sharp_loop_counter + 1;
+		if(c_sharp_loop_counter <= 3*27000000) begin
 			 c_sharp_beep_time_counter <= c_sharp_beep_time_counter + 1;
 			 if(c_sharp_beep_time_counter == 27000000) 
 				 c_sharp_beep_time_counter <= 0;
@@ -44,8 +44,8 @@ module metronome_8_beats_with_7seg_display(
 					 speaker_out <= 0;
 			 end	
 		end
-		else if(c_loop_counter == 4*27000000) begin 
-			c_loop_counter <= 0;
+		else if(c_sharp_loop_counter == 4*27000000) begin 
+			c_sharp_loop_counter <= 0;
 		end
 						
 		// 7-segment display 
