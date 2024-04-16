@@ -8,7 +8,7 @@ module metronome_8_beats_with_7seg_display(
 	reg [16:0] c_sharp_freq_counter;
 	reg [16:0] g_sharp_freq_counter;
 	reg [24:0] c_sharp_beep_time_counter;
-	reg [26:0] g_sharp_beep_time_counter; // 27 bit counter was needed because of this g_sharp_beep_time_counter == (4*25'd27000000) comparison
+	reg [26:0] g_sharp_beep_time_counter; // 27 bit counter was needed because of this g_sharp_beep_time_counter became 4 times of 25'd27000000
 	reg [26:0] c_sharp_loop_counter;
 	
 	always@(posedge clk) begin 
