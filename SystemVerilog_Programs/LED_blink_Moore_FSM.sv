@@ -9,30 +9,38 @@ module LED_blink_FSM(
         STATE_OFF = 2'b00,
         STATE_ON  = 2'b01
     } state_t;
-	
-
+    
     // State variables
-    state_t current_state, next_state;
+    state_t current_state, next_state = STATE_ON;
 
-    // State transition logic
+    // Counter for timing control
+    reg [27:0] counter;  // 28-bit counter to count up to 27,000,000
+
+    // State transition and counter logic
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             current_state <= STATE_OFF;  // Reset state
-        end else begin
-            current_state <= next_state;
-        end
+            counter <= 0;                // Reset counter
+        end 
+		else begin
+			counter <= counter + 1;        // Increment counter
+            if (counter >= 27_000_000) begin
+                current_state <= next_state;  // Change state every 27,000,000 cycles
+                counter <= 0;                  // Reset counter
+        	end
+		end
     end
 
-    // Next state logic
+    // Next state logic based on current state
     always_comb begin
         case (current_state)
-            STATE_OFF: next_state = STATE_ON;
-            STATE_ON:  next_state = STATE_OFF;
+            STATE_OFF: next_state = STATE_ON;  // Transition to ON after 1 second
+            STATE_ON:  next_state = STATE_OFF; // Transition to OFF after 1 second
             default:   next_state = STATE_OFF; // Default case to handle unknown states
         endcase
     end
 
-    // Output logic based on current state
+    // Output logic based on current state (Moore output)
     always_ff @(posedge clk) begin
         case (current_state)
             STATE_OFF: led = 1'b0;  // LED is off
@@ -42,4 +50,3 @@ module LED_blink_FSM(
     end
 
 endmodule
-
