@@ -39,7 +39,7 @@ module LED_blink_FSM(
 	
 	/*
 		Below always block will reset the LED to off whenever button is clicked 
-		button should be in  PULL_MODE=UP mode and connected to GND 
+		Button should be in  PULL_MODE=UP mode and connected to GND 
 	*/
 	
 	/*	 always_ff@(posedge clk or negedge rst) begin
