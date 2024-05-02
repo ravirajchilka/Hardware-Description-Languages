@@ -4,7 +4,7 @@ module DFF (
     input logic d,
     output logic q
 );
-    always_ff @(posedge clk or posedge reset)
+    always_ff@(posedge clk or posedge reset)
     begin
         if (reset)
             q <= 1'b0;  // Synchronously reset the output to 0
