@@ -36,7 +36,7 @@ initial begin
 end
 
 
-always_ff@(posedge clk) begin 
+always@(posedge clk) begin 
       $display("At time %t: q = %b", $time, q);
 
 end
