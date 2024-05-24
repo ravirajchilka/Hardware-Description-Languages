@@ -10,25 +10,25 @@ module fsm_3states(
 		states current_state, next_state;				
 		reg [31:0] counter;
 
-		parameter CLK_FREQ = 27000;
+		parameter MILLISECOND_COUNT = 27000;
 
 		always_comb begin 
 				case(current_state)
 						IDLE: next_state = STATE1;
 						STATE1: begin 
-								if(counter == 4*CLK_FREQ)
+								if(counter == 4*MILLISECOND_COUNT)
 									next_state = STATE2;
 								else 
 									next_state = STATE1;	
 						end
 						STATE2: begin 
-								if(counter == 5*CLK_FREQ)
+								if(counter == 5*MILLISECOND_COUNT)
 									next_state = STATE3;
 								else 
 									next_state = STATE2;
 						end
 						STATE3: begin 
-								if(counter == 6*CLK_FREQ)
+								if(counter == 6*MILLISECOND_COUNT)
 									next_state = IDLE;
 								else 
 									next_state = STATE3;
@@ -56,33 +56,33 @@ module fsm_3states(
 						end 
 						STATE1: begin 
 								counter <= counter + 1;
-								if(counter < CLK_FREQ) 
+								if(counter < MILLISECOND_COUNT) 
 										sig <= 1;
-								if(counter > CLK_FREQ && counter < 2*CLK_FREQ)
+								if(counter > MILLISECOND_COUNT && counter < 2*MILLISECOND_COUNT)
 										sig <= 0;
-								if(counter > 2*CLK_FREQ && counter < 3*CLK_FREQ)
+								if(counter > 2*MILLISECOND_COUNT && counter < 3*MILLISECOND_COUNT)
 										sig <= 1;
-								if(counter > 3*CLK_FREQ && counter < 4*CLK_FREQ)  
+								if(counter > 3*MILLISECOND_COUNT && counter < 4*MILLISECOND_COUNT)  
 										sig <= 0;
-								 if(counter == 4*CLK_FREQ) 
+								 if(counter == 4*MILLISECOND_COUNT) 
 										counter <= 0;
 						end 
 						STATE2: begin 
 								counter <= counter + 1;
-								if(counter < 2*CLK_FREQ) 
+								if(counter < 2*MILLISECOND_COUNT) 
 										sig <= 1;
-								if(counter > 2*CLK_FREQ && counter < 5*CLK_FREQ)
+								if(counter > 2*MILLISECOND_COUNT && counter < 5*MILLISECOND_COUNT)
 										sig <= 0;
-								if(counter == 5*CLK_FREQ)
+								if(counter == 5*MILLISECOND_COUNT)
 										counter <= 0;
 						end 
 						STATE3: begin 
 								counter <= counter + 1;
-								if(counter < 5*CLK_FREQ) 
+								if(counter < 5*MILLISECOND_COUNT) 
 										sig <= 1;
-								if(counter > 5*CLK_FREQ && counter < 6*CLK_FREQ)
+								if(counter > 5*MILLISECOND_COUNT && counter < 6*MILLISECOND_COUNT)
 										sig <= 0;
-								if(counter == 6*CLK_FREQ)
+								if(counter == 6*MILLISECOND_COUNT)
 										counter <= 0;
 						end 
 				endcase
