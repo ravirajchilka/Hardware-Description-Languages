@@ -10,13 +10,13 @@ module fsm(
 		states current_state, next_state;
 
 		reg SCLK_d;
-        reg posedge_detected;
+        	reg posedge_detected;
 		reg [2:0] counter;
 		reg [5:0] data;
 
 		always_comb begin 
 		    case (current_state)
-            IDLE: next_state = READY;
+            		IDLE: next_state = READY;
 						READY: begin
 							if(!CS)
 								 next_state = TX;
@@ -30,8 +30,8 @@ module fsm(
 								 next_state = TX;
 						end
 						STOP: next_state = IDLE;
-            default: next_state = IDLE;
-        endcase
+            		default: next_state = IDLE;
+       		 endcase
 		end
 
 
@@ -40,7 +40,7 @@ module fsm(
 						current_state <= IDLE;
 				else
 						current_state <= next_state;
-        end
+        	end
 
 
 		always_ff @(posedge clk or negedge rst_n) begin
