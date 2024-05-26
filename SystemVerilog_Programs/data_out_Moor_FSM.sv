@@ -10,7 +10,7 @@ module fsm(
 		states current_state, next_state;
 
 		reg SCLK_d;
-    reg posedge_detected;
+        reg posedge_detected;
 		reg [2:0] counter;
 		reg [5:0] data;
 
@@ -40,7 +40,7 @@ module fsm(
 						current_state <= IDLE;
 				else
 						current_state <= next_state;
-    end
+        end
 
 
 		always_ff @(posedge clk or negedge rst_n) begin
