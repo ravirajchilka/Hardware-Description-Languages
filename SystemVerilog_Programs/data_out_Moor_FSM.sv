@@ -1,9 +1,6 @@
 module fsm (
-    input clk,
-    rst_n,
-    output reg SCLK,
-    CS,
-    DO
+    input clk,rst_n,
+    output reg SCLK,CS,DO
 );
 
   typedef enum logic [1:0] {
@@ -15,52 +12,38 @@ module fsm (
 
   states current_state, next_state;
 
-  reg SCLK_d;
-  reg posedge_detected;
-  reg [2:0] counter;
-  reg [5:0] data;
+	reg SCLK_d;
+    reg posedge_detected;
+	reg [2:0] counter;
+	reg [5:0] data;
 
-  always_comb begin
-    case (current_state)
-      IDLE: next_state = READY;
-      READY: begin
-        if (!CS) next_state = TX;
-        else next_state = READY;
-      end
-      TX: begin
-        if (counter == 6) next_state = STOP;
-        else next_state = TX;
-      end
-      STOP: next_state = IDLE;
-      default: next_state = IDLE;
-    endcase
-  end
-
-
-  always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) current_state <= IDLE;
-    else current_state <= next_state;
-  end
+		always_comb begin 
+		    case (current_state)
+            		IDLE: next_state = READY;
+						READY: begin
+							if(!CS)
+								 next_state = TX;
+							else 
+								 next_state = READY;
+						end
+						TX: begin
+							if(counter == 6)
+								 next_state = STOP;
+							else 
+								 next_state = TX;
+						end
+						STOP: next_state = IDLE;
+            		default: next_state = IDLE;
+       		 endcase
+		end
 
 
-  always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      DO <= 0;
-      CS <= 1;
-      SCLK_d <= 0;
-      posedge_detected <= 0;
-      data <= 6'b101001;
-      SCLK <= 0;
-    end else begin
-      case (current_state)
-        IDLE: begin
-          DO <= 0;
-          CS <= 1;
-          SCLK_d <= 0;
-          posedge_detected <= 0;
-          counter <= 1'b0;
-          SCLK <= 0;
-        end
+		always_ff @(posedge clk or negedge rst_n) begin
+				if (!rst_n)
+						current_state <= IDLE;
+				else
+						current_state <= next_state;
+        	end
 
         READY: begin
           CS <= 0;
