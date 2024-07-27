@@ -53,15 +53,15 @@ module fsm(
 			TX: begin 
 				sclk_counter <= sclk_counter + 1;
       
-        if(sclk_counter < 12.5) 
-            SCLK <= 1'b0; 
-        else 
-            SCLK <= 1'b1; 
-       
-        if(sclk_counter > 2*12.5) begin
-            sclk_counter <= 0;
-						testc <= testc + 1;
-        end
+                if(sclk_counter < 12.5) 
+                    SCLK <= 1'b0; 
+                else 
+                    SCLK <= 1'b1; 
+            
+                if(sclk_counter > 2*12.5) begin
+                    sclk_counter <= 0;
+                    testc <= testc + 1;
+                end
 			end
 		endcase
 	end
