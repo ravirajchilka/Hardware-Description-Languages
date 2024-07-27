@@ -1,13 +1,11 @@
 /* The SCLK frequency is 1MHz with 52% duty cycle*/
-
 module fsm(
 	input clk,rst_n,
 	output reg SCLK,MOSI,CS
 );
 
-	reg [30:0] sclk_counter;
-	reg [30:0] testc;	
-
+	reg [4:0] sclk_counter;
+	
 	typedef enum logic [1:0] {
 		IDLE,READY,TX,STOP
 	} spi_states;
@@ -28,11 +26,7 @@ module fsm(
 			IDLE: next_state = READY;
 			READY : next_state = TX;
 			TX: begin 
-				if(testc == 100) begin 
-					next_state = next_state;
-				end else begin 
 					next_state = TX;
-				end
 			end 
 			default: next_state = IDLE;
 		endcase
@@ -53,15 +47,14 @@ module fsm(
 			TX: begin 
 				sclk_counter <= sclk_counter + 1;
       
-                if(sclk_counter < 12.5) 
-                    SCLK <= 1'b0; 
-                else 
-                    SCLK <= 1'b1; 
-            
-                if(sclk_counter > 2*12.5) begin
-                    sclk_counter <= 0;
-                    testc <= testc + 1;
-                end
+				if(sclk_counter < 12.5) 
+					SCLK <= 1'b0; 
+				else 
+					SCLK <= 1'b1; 
+			
+				if(sclk_counter > 2*12.5) begin
+					sclk_counter <= 0;
+				end
 			end
 		endcase
 	end
