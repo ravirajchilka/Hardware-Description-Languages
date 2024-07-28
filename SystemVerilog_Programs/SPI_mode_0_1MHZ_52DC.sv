@@ -39,7 +39,7 @@ module fsm (
         if (data_counter <= 7) begin
           next_state = TX;
         end else begin
-          next_state = IDLE;
+          next_state = STOP;
         end
       end
       STOP: next_state = IDLE;
@@ -56,6 +56,7 @@ module fsm (
         MOSI_data <= 8'b01001100;
         data_counter <= 0;
         sclk_counter <= 0;
+        SCLK_prev <= 1;  // Initialize SCLK_prev
       end
 
       READY: begin
@@ -75,8 +76,8 @@ module fsm (
         end
 
         if (SCLK_prev == 1'b1 && SCLK == 1'b0) begin
+          MOSI <= MOSI_data[data_counter]; // Send LSB first, for sending MSB first use [7-data_counter]
           data_counter <= data_counter + 1;
-          MOSI <= MOSI_data[data_counter];  // Send LSB first
         end
 
         SCLK_prev <= SCLK;  // Update previous SCLK state
