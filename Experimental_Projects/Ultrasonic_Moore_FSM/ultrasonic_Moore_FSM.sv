@@ -4,7 +4,7 @@
 */
 module ultrasonic_FSM(
 	input clk,rst,echo_pin,
-	output reg trigger_pin, LED_pin	
+	output logic trigger_pin, LED_pin	
 );
 
 		typedef enum [1:0] {
@@ -15,13 +15,13 @@ module ultrasonic_FSM(
 		} process_states;
 
 		process_states current_state, next_state; 
-		reg [31:0] counter; 
-		reg [31:0] event_timer; 
+		logic [31:0] counter; 
+		logic [31:0] event_timer; 
 
 		//width calucation
-		reg [31:0] width_counter;
-		reg [31:0] pulse_width;
-		reg signal_last_state;
+		logic [31:0] width_counter;
+		logic [31:0] pulse_width;
+		logic signal_last_state;
 
 
 		always_comb begin 
