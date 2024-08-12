@@ -3,14 +3,14 @@ module metronome_8_beats_with_7seg_display(
 	output reg a, b, c, d, e, f, g, speaker_out
 );
 
-	reg [3:0] counter_output = 1'b1; // start metronome from beat 1
-	reg [24:0] counter;
-	reg [16:0] c_sharp_freq_counter;
-	reg [16:0] g_sharp_freq_counter;
-	reg [24:0] c_sharp_beep_time_counter;
-	reg [26:0] g_sharp_beep_time_counter; // 27 bit counter was needed because of this g_sharp_beep_time_counter became 4 times of 25'd27000000
-	reg [26:0] c_sharp_loop_counter;
-	
+	reg [3:0] counter_output = 4'b0001; // start metronome from beat 1
+    reg [24:0] counter = 0;
+    reg [16:0] c_sharp_freq_counter = 0;
+    reg [16:0] g_sharp_freq_counter = 0;
+    reg [24:0] c_sharp_beep_time_counter = 0;
+    reg [26:0] g_sharp_beep_time_counter = 0;  // 27 bit counter was needed because of this g_sharp_beep_time_counter became 4 times of 25'd27000000
+    reg [26:0] c_sharp_loop_counter = 0;
+
 	always@(posedge clk) begin 
 		// Generate G# beep at 4th interval // G#4: Around 415.30 Hz 
 		g_sharp_beep_time_counter <= g_sharp_beep_time_counter + 1'b1;
