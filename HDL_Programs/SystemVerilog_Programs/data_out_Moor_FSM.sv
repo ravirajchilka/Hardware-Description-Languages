@@ -1,6 +1,6 @@
 module fsm (
     input clk,rst_n,
-    output reg SCLK,CS,DO
+    output logic SCLK,CS,DO
 );
 
   typedef enum logic [1:0] {
@@ -12,10 +12,10 @@ module fsm (
 
   states current_state, next_state;
 
-	reg SCLK_d;
-    reg posedge_detected;
-	reg [2:0] counter;
-	reg [5:0] data;
+	logic SCLK_d;
+    logic posedge_detected;
+	logic [2:0] counter;
+	logic [5:0] data;
 
 		always_comb begin 
 		    case (current_state)

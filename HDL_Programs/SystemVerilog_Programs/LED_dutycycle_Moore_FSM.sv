@@ -1,6 +1,6 @@
 module ledfsm(
 	input clk, rst,
-	output reg led
+	output logic led
 );
 
 	typedef enum bit {
@@ -8,7 +8,7 @@ module ledfsm(
 	} state_t;
 
 	state_t current_state = ON, next_state;
-	reg [27:0] counter;
+	logic [27:0] counter;
 	
 	always_comb begin 
 		case(current_state)

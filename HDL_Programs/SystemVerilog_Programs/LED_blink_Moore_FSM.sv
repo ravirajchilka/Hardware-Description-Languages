@@ -14,7 +14,7 @@ module LED_blink_FSM(
     state_t current_state = STATE_ON, next_state; // next_state doesnt need initial value
 	
     // Counter for timing control
-    reg [27:0] counter;  // 28-bit counter to count up to 27,000,000
+    logic [27:0] counter;  // 28-bit counter to count up to 27,000,000
 
 
     // State transition and counter logic

@@ -5,8 +5,8 @@ module tb_myprotocol;
 
 // Inputs
 
-reg clk;
-reg rst;
+logic clk;
+logic rst;
   
 
 // Outputs

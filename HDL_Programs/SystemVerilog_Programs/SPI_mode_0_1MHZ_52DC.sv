@@ -3,16 +3,16 @@
 module fsm (
     input clk,
     rst_n,
-    output reg SCLK,
+    output logic SCLK,
     MOSI,
     CS
 );
 
-  reg [5:0] sclk_counter;
-  reg [2:0] data_counter;
-  reg [7:0] MOSI_data;
+  logic [5:0] sclk_counter;
+  logic [2:0] data_counter;
+  logic [7:0] MOSI_data;
 
-  reg SCLK_prev;  // To detect SCLK negative edge
+  logic SCLK_prev;  // To detect SCLK negative edge
 
   typedef enum logic [1:0] {
     IDLE,

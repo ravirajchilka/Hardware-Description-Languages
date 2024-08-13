@@ -1,11 +1,11 @@
 module myprotocol(
 	input clk,rst,
-  	output reg sig1,sig2,sig3
+  	output logic sig1,sig2,sig3
 );
   
-  reg [2:0] counter1;
-  reg [2:0] counter2;
-  reg [2:0] counter3;
+  logic [2:0] counter1;
+  logic [2:0] counter2;
+  logic [2:0] counter3;
   
   always_ff@(posedge clk) begin 
     if(rst) begin

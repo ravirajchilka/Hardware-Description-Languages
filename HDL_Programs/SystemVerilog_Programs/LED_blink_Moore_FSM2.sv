@@ -1,6 +1,6 @@
 module fsm(
 		input clk,rst,
-		output reg sig
+		output logic sig
 );
 
 		typedef enum logic [1:0] {
@@ -8,7 +8,7 @@ module fsm(
 		} state;
 
 		state cstate,nstate;
-		reg [26:0] c;
+		logic [26:0] c;
 
 		always_comb begin 
 				case(cstate)

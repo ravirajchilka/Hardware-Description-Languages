@@ -1,6 +1,6 @@
 module trafficlightcontrollerfsm(
 	input clk, rst,
-	output reg r,g,y // 74,73,75
+	output logic r,g,y // 74,73,75
 );
 
 	// state transition GREEN TO YELLOW, YELLOW TO RED then back to GREEN
@@ -11,7 +11,7 @@ module trafficlightcontrollerfsm(
 
 
 	signal_states current_state,next_state;
-	reg [31:0] counter;
+	logic [31:0] counter;
 
 	always_comb begin
 		case(current_state) 

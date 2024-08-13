@@ -1,6 +1,6 @@
 module fsm_3states(
 		input clk, rst_n,
-		output reg sig
+		output logic sig
 );
 		//outputs signal sig 101011000111110
 		typedef enum logic [1:0] {
@@ -8,7 +8,7 @@ module fsm_3states(
 		} states;
 
 		states current_state, next_state;				
-		reg [31:0] counter;
+		logic [31:0] counter;
 
 		parameter MILLISECOND_COUNT = 27000;
 
