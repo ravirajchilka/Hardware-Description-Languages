@@ -2,7 +2,7 @@
 /*
     The FSM is working fine but CS always outputs 0 , I was not able to find the reason behind that it could be
     due the way GOWIN FPGA sythesis works. Once reset button pressed then CS goes high and we can see the output.
-    I interfaced MCP3008 10 bit ADC as slave and used resistors to create voltage divider circuit to get analog singal
+    I interfaced MCP3008 10 bit ADC as slave and used resistors and LDR to create voltage divider circuit to get analog singal
     and was able to see the output on logic anaylzer.
 */
 
