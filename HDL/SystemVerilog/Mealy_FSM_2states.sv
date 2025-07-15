@@ -13,7 +13,7 @@ module fsm_2states_mealy(
 
     parameter CLOCK_CLK = 100_000_000;
 
-    // 1️⃣ Next-state logic (pure combinational)
+    //[1] Next-state logic (pure combinational)
     always_comb begin
         case (current_state)
             IDLE:       next_state = TX;
@@ -22,7 +22,7 @@ module fsm_2states_mealy(
         endcase
     end
 
-    // 2️⃣ State register (sequential block)
+    //[2] State register (sequential block)
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n)
             current_state <= IDLE;
@@ -30,7 +30,7 @@ module fsm_2states_mealy(
             current_state <= next_state;
     end
 
-    // 3️⃣ Counter logic (sequential)
+    //[3] Counter logic (sequential)
     always_ff @(posedge clk) begin
         case (current_state)
             IDLE: counter <= 0;
@@ -38,7 +38,7 @@ module fsm_2states_mealy(
         endcase
     end
 
-    // ✅ 4️⃣ Mealy output logic (combinational, real-time response)
+    //[4] Mealy output logic (combinational, real-time response)
     always_comb begin
         case (current_state)
             IDLE: sig = 0;
